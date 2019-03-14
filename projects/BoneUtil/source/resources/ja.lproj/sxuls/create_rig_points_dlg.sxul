@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<dialog default_button="false" id="create_rig_points_dialog" title="人体リグの制御点を初期化">
+	<float id="101" label="身長:" unit="mm" />
+	<selection id="102" label="ポーズ:|T-Pose|A-Pose (30度)|A-Pose (45度)" />
+	<bool id="103" label="ミラーリング" />
+</dialog>

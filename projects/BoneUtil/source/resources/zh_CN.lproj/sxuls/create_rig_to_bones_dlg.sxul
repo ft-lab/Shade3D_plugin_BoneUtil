@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<dialog default_button="false" id="create_rig_to_bones_dialog" title="Generate Human Bones">
+	<selection id="101" label="Bones Type:|HumanIK|MMD(jp)|MMD(en)" />
+	<short-string id="102" label="Name:" />
+	<!-- <bool id="103" label="Create legs IK" /> -->
+
+	<group id="110" label="Options">
+		<bool id="111" label="Eyes" />
+		<bool id="112" label="Jaw" />
+	</group>
+</dialog>

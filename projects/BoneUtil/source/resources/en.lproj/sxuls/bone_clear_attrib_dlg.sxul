@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<dialog default_button="false" id="100" title="Reset Bone">
+	<vbox>
+		<bool id="101" label="Replace Bones and Update Skin" />
+	</vbox>
+</dialog>

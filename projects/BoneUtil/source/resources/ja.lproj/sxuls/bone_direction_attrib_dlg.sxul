@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<dialog default_button="false" id="100" title="ボーンの軸方向">
+	<vbox>
+		<bool id="101" label="ボーン方向に統一" />
+	</vbox>
+</dialog>

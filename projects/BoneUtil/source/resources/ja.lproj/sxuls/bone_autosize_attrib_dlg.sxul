@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<dialog default_button="false" id="100" title="ボーンのリサイズ">
+	<vbox>
+		<bool id="101" label="距離で調整" />
+		<float id="102" label="ボーンサイズ:" />
+		<float id="103" label="スケール:" />
+	</vbox>
+</dialog>

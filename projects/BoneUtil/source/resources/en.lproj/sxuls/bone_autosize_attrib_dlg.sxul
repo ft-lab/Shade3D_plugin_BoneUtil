@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<dialog default_button="false" id="100" title="Resize Bone">
+	<vbox>
+		<bool id="101" label="Adjust Distance" />
+		<float id="102" label="Bone Size:" />
+		<float id="103" label="Scale:" />
+	</vbox>
+</dialog>

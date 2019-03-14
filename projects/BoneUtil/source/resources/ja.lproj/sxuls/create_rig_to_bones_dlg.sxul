@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<dialog default_button="false" id="create_rig_to_bones_dialog" title="人体ボーンの生成">
+	<selection id="101" label="ボーンの種類:|HumanIK|MMD(jp)|MMD(en)" />
+	<short-string id="102" label="名前:" />
+	<!-- <bool id="103" label="IKの割り当て" /> -->
+
+	<group id="110" label="オプション">
+		<bool id="111" label="目" />
+		<bool id="112" label="あご" />
+	</group>
+</dialog>

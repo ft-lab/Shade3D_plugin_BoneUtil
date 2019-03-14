@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<strings>
+	<string id="product_name" value="BoneUtil"/>
+	<string id="author" value="ft-lab"/>
+	<string id="company" value="ft-lab"/>
+	<string id="comments" value="BoneUtil"/>
+
+	<string id="boneUtil" value="boneUtil"/>
+
+	<string id="title" value="ボーンのミラーリング ..."/>
+	<string id="boneclear_title" value="ボーンのリセット ..."/>
+	<string id="boneautosize_title" value="ボーンのリサイズ ..."/>
+	<string id="init_human_bone_title" value="人体リグの制御点を初期化 ..."/>
+	<string id="create_human_bone_title" value="人体ボーンの生成 ..."/>
+	<string id="create_bones_mesh_title" value="ボーン用メッシュを生成 ..."/>
+	<string id="rename_human_bone_title" value="ボーン名の変更 ..."/>
+	<string id="bone_direction_title" value="ボーンの軸方向 ..."/>
+
+	<string id="msg_not_bone" value="ボーンを選択してください。"/>
+	<!-- <string id="msg_not_mmd_rigs" value="MMDの人体ボーンでない可能性があります。名前変換を続行しますか？"/> -->
+
+</strings>

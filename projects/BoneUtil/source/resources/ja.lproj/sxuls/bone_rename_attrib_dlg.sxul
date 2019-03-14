@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<dialog default_button="false" id="bone_rename_attrib_dialog" title="ボーン名の変更">
+	<selection id="101" label="Bones name:|default|MMD(jp)|MMD(en)" />
+</dialog>

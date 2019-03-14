@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<dialog default_button="false" id="100" title="Mirroring Bone">
+	<vbox>
+		<selection id="101" label="Center Axis:|X|Y|Z" />
+		<float id="102" label="Center Position:" />
+
+		<bool id="103" label="Rename" />
+		<short-string id="104" label="Original Name:" />
+		<short-string id="105" label="New Name:" />
+	</vbox>
+</dialog>

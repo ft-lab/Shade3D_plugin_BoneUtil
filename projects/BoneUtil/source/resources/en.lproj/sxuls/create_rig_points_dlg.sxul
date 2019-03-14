@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<dialog default_button="false" id="create_rig_points_dialog" title="Initialize Human Rig Points">
+	<float id="101" label="Height:" unit="mm" />
+	<selection id="102" label="Pose:|T-Pose|A-Pose (30 Degrees)|A-Pose (45 Degrees)" />
+	<bool id="103" label="Mirroring" />
+</dialog>

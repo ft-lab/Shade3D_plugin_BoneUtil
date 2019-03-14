@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<dialog default_button="false" id="create_bones_mesh_dialog" title="Create Bones Mesh">
+	<float id="101" label="Scale:" />
+</dialog>

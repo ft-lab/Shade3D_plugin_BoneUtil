@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<dialog default_button="false" id="100" title="ボーンのミラーリング">
+	<vbox>
+		<selection id="101" label="中心軸:|X|Y|Z" />
+		<float id="102" label="中心位置:" />
+
+		<bool id="103" label="名前変更" />
+		<short-string id="104" label="元のテキスト:" />
+		<short-string id="105" label="変更後のテキスト:" />
+	</vbox>
+</dialog>

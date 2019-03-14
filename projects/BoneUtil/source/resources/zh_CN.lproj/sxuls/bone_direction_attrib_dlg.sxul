@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<dialog default_button="false" id="100" title="Bone Direction">
+	<vbox>
+		<bool id="101" label="Redirect Bones to Skeletal Direction" />
+	</vbox>
+</dialog>
