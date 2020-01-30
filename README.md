@@ -13,7 +13,7 @@ https://shade3d.jp/store/marketplace/ft-lab/boneutil/boneutil.html
 
 * Windows 7/8/10以降のOS    
 * macOS 10.11以降   
-* Shade3D ver.14以降で、Standard/Professional版（Basic版では動作しません）  
+* Shade3D ver.15以降で、Standard/Professional版（Basic版では動作しません）  
   Shade3Dの64bit版のみで使用できます。32bit版のShade3Dには対応していません。   
 
 ## 使い方
@@ -350,22 +350,22 @@ OKボタンを押すと、「スケール」で指定した値で、各ボーン
 * UNDO/REDOには対応していません。
 * ボーンまたはボールジョイントのみに使用できます。ボーン/ボールジョイント以外のジョイントやパートと併用した場合は本機能は使用できません。 
 
-## 開発環境
+## ビルド方法 (開発向け)
 
 ### 使用SDK
 
 Shade 15.1 Plugin SDK (481137)    
 https://github.com/shadedev/pluginsdk    
 
-本プラグインのプロジェクトは、Visual Studio 2017でビルドできるようにしています。    
+本プラグインのプロジェクトは、Visual Studio 2017/Xcode 10.1でビルドできるようにしています。    
 
 ### Windows
 
-Visual Studio 2017 
+Visual Studio 2017 を使用しました。    
 
-### Mac OS X
+### Mac OS
 
-まだ。    
+Xcode 10.1 を使用しました。    
 
 ## ビルド方法
 
@@ -378,9 +378,10 @@ Visual Studio 2017で「/projects/BoneUtil/win/Template.sln」を開き、ビル
 Debug 64bit/Release 64bitでビルドするようにします。     
 ビルドで生成された「BoneUtil64.dll」をShade3DのpluginsフォルダにコピーしてShade3Dを起動します。    
 
-### Mac OS X
+### Mac OS
 
-まだ。     
+Xcode 10.1で「/projects/BoneUtil/mac/plugins/Template.xcodeproj」を開き、ビルドします。    
+ビルドで生成された「BoneUtil.shdplugin」をShade3DのpluginsフォルダにコピーしてShade3Dを起動します。    
 
 ## 更新履歴
 
