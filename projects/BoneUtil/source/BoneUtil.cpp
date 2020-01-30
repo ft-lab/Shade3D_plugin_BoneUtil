@@ -127,7 +127,7 @@ std::string BoneUtil::GetUTF8Text(sxsdk::shade_interface& shade, const std::stri
 }
 
 /**
- * 指定のポリゴンメッシュに割り当てられているボーンのルートを取得.
+ * 指定のポリゴンメッシュに割り当てられているボーン/ボールジョイントのルートを取得.
  */
 sxsdk::shape_class* BoneUtil::GetBoneRoot(sxsdk::shape_class& shapePolygonMesh)
 {
@@ -149,14 +149,16 @@ sxsdk::shape_class* BoneUtil::GetBoneRoot(sxsdk::shape_class& shapePolygonMesh)
 			sxsdk::shape_class *pBoneShape = NULL;
 			if (pShape->get_type() == sxsdk::enums::part) {
 				sxsdk::part_class *part = &(pShape->get_part());
-				if (part->get_part_type() == sxsdk::enums::bone_joint) {
+				const int partType = part->get_part_type();
+				if (partType == sxsdk::enums::bone_joint || partType == sxsdk::enums::ball_joint) {
 					pBoneShape = pShape;
 				}
 			}
 			if (pBoneShape) {
 				while (pBoneShape->has_dad()) {
 					sxsdk::part_class *part = pBoneShape->get_dad();
-					if (part->get_part_type() == sxsdk::enums::bone_joint) {
+					const int partType = part->get_part_type();
+					if (partType == sxsdk::enums::bone_joint || partType == sxsdk::enums::ball_joint) {
 						pBoneShape = part;
 					} else {
 						break;
@@ -226,3 +228,4 @@ bool BoneUtil::ChkRootBone(sxsdk::shape_class& shape, sxsdk::shape_class& rootBo
 	}
 	return false;
 }
+

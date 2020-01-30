@@ -26,8 +26,8 @@ bool CBoneAutoSizeAttributeInterface::ask_shape (sxsdk::shape_class &shape, void
 	compointer<sxsdk::scene_interface> scene(shape.get_scene_interface());
 	if (scene == NULL) return false;
 
-	if (!BoneUtil::IsBone(scene->active_shape())) {
-		scene->show_message_box(scene->gettext("msg_not_bone"), false);
+	if (!BoneUtil::IsBoneBallJoint(scene->active_shape())) {
+		scene->show_message_box(scene->gettext("msg_not_bone_balljoint"), false);
 		return false;
 	}
 
@@ -54,8 +54,8 @@ bool CBoneAutoSizeAttributeInterface::ask_shape (sxsdk::shape_class &shape, void
 void CBoneAutoSizeAttributeInterface::m_DoBoneAutoSize(sxsdk::scene_interface *scene)
 {
 	sxsdk::shape_class& active_shape = scene->active_shape();
-	if (!BoneUtil::IsBone(active_shape)) {
-		scene->show_message_box(scene->gettext("msg_not_bone"), false);
+	if (!BoneUtil::IsBoneBallJoint(active_shape)) {
+		scene->show_message_box(scene->gettext("msg_not_bone_balljoint"), false);
 		return;
 	}
 
@@ -65,36 +65,44 @@ void CBoneAutoSizeAttributeInterface::m_DoBoneAutoSize(sxsdk::scene_interface *s
 
 void CBoneAutoSizeAttributeInterface::m_DoBoneAutoSizeLoop(sxsdk::scene_interface *scene, sxsdk::shape_class& shape, sxsdk::shape_class* prevShape)
 {
-	if (!BoneUtil::IsBone(shape)) return;
+	if (!BoneUtil::IsBoneBallJoint(shape)) return;
 
 	float size = 0.0f;
 
-	sxsdk::vec3 center = BoneUtil::GetBoneCenter(shape, &size);
+	const bool isBone = BoneUtil::IsBone(shape);
+	sxsdk::vec3 center = BoneUtil::GetBoneBallJointCenter(shape, &size);
 
 	if (!m_data.changeByDistance) {
 		// 普通にボーンサイズを指定のものに変更.
 		try {
-			compointer<sxsdk::bone_joint_interface> bone(shape.get_bone_joint_interface());
-			bone->set_size(m_data.boneSize);
+			if (isBone) {
+				compointer<sxsdk::bone_joint_interface> bone(shape.get_bone_joint_interface());
+				bone->set_size(m_data.boneSize);
+			}
 		} catch (...) { }
 	} else {
 		float dist = 0.0f;
 		float sizePrev = size;
 		sxsdk::vec3 centerPrev = center;
 		if (prevShape) {
-			centerPrev = BoneUtil::GetBoneCenter(*prevShape, &sizePrev);
+			centerPrev = BoneUtil::GetBoneBallJointCenter(*prevShape, &sizePrev);
 			dist = sxsdk::distance3(centerPrev, center);
 		}
 		if (dist > 0.0f) {
 			size = (dist / 8.0f) * m_data.scale;
 			try {
-				compointer<sxsdk::bone_joint_interface> bone(shape.get_bone_joint_interface());
-				bone->set_size(size);
+				if (isBone) {
+					compointer<sxsdk::bone_joint_interface> bone(shape.get_bone_joint_interface());
+					bone->set_size(size);
+				}
 			} catch (...) { }
 			if (prevShape) {
+				const bool isBonePrev = BoneUtil::IsBone(*prevShape);
 				try {
-					compointer<sxsdk::bone_joint_interface> bone(prevShape->get_bone_joint_interface());
-					bone->set_size(size);
+					if (isBonePrev) {
+						compointer<sxsdk::bone_joint_interface> bone(prevShape->get_bone_joint_interface());
+						bone->set_size(size);
+					}
 				} catch (...) { }
 			}
 		}

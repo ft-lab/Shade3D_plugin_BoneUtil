@@ -63,12 +63,12 @@ namespace BoneUtil
 	sxsdk::vec3 GetBoneBallJointCenter(sxsdk::shape_class& shape, float *size);
 
 	/**
-	 * 指定のポリゴンメッシュに割り当てられているボーンのルートを取得.
+	 * 指定のポリゴンメッシュに割り当てられているボーン/ボールジョイントのルートを取得.
 	 */
 	sxsdk::shape_class* GetBoneRoot(sxsdk::shape_class& shapePolygonMesh);
 
 	/**
-	 * シーン内に存在するボーンとメッシュの組み合わせを取得.
+	 * シーン内に存在するボーン/ボールジョイントとメッシュの組み合わせを取得.
 	 */
 	int GetBoneMeshsList(sxsdk::scene_interface* scene, std::vector<sxsdk::shape_class *>& retMeshList, std::vector<sxsdk::shape_class *>& retBoneRootList);
 

@@ -25,8 +25,8 @@ bool CBoneDirectionAttributeInterface::ask_shape (sxsdk::shape_class &shape, voi
 	compointer<sxsdk::scene_interface> scene(shape.get_scene_interface());
 	if (scene == NULL) return false;
 
-	if (!BoneUtil::IsBone(shape)) {
-		scene->show_message_box(scene->gettext("msg_not_bone"), false);
+	if (!BoneUtil::IsBoneBallJoint(shape)) {
+		scene->show_message_box(scene->gettext("msg_not_bone_balljoint"), false);
 		return false;
 	}
 
@@ -54,7 +54,7 @@ void CBoneDirectionAttributeInterface::m_DoBoneDirection(sxsdk::shape_class &sha
 
 void CBoneDirectionAttributeInterface::m_DoBoneDirectionLoop(sxsdk::shape_class& shape, sxsdk::part_class* parentPart)
 {
-	if (!BoneUtil::IsBone(shape)) return;
+	if (!BoneUtil::IsBoneBallJoint(shape)) return;
 
 	const sxsdk::mat4 lwMat = shape.get_transformation() * shape.get_local_to_world_matrix();		//(parentPart) ? ((parentPart->get_transformation()) * (parentPart->get_local_to_world_matrix())) : shape.get_local_to_world_matrix();
 	const sxsdk::mat4 wlMat = inv(lwMat);

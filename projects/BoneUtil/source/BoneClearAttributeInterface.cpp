@@ -25,8 +25,8 @@ bool CBoneClearAttributeInterface::ask_shape (sxsdk::shape_class &shape, void *)
 	compointer<sxsdk::scene_interface> scene(shape.get_scene_interface());
 	if (scene == NULL) return false;
 
-	if (!BoneUtil::IsBone(shape)) {
-		scene->show_message_box(scene->gettext("msg_not_bone"), false);
+	if (!BoneUtil::IsBoneBallJoint(shape)) {
+		scene->show_message_box(scene->gettext("msg_not_bone_balljoint"), false);
 		return false;
 	}
 
@@ -52,8 +52,8 @@ bool CBoneClearAttributeInterface::ask_shape (sxsdk::shape_class &shape, void *)
 void CBoneClearAttributeInterface::m_DoBoneClear(sxsdk::scene_interface *scene)
 {
 	sxsdk::shape_class& active_shape = scene->active_shape();
-	if (!BoneUtil::IsBone(active_shape)) {
-		scene->show_message_box(scene->gettext("msg_not_bone"), false);
+	if (!BoneUtil::IsBoneBallJoint(active_shape)) {
+		scene->show_message_box(scene->gettext("msg_not_bone_balljoint"), false);
 		return;
 	}
 
@@ -186,17 +186,18 @@ void CBoneClearAttributeInterface::m_ReplaceMeshSkin(sxsdk::shape_class& meshSha
 
 void CBoneClearAttributeInterface::m_DoBoneClearLoop(sxsdk::scene_interface *scene, sxsdk::shape_class& shape, sxsdk::part_class* parentPart, std::vector<sxsdk::shape_class *>& cOrgShapeList, std::vector<sxsdk::shape_class *>& cShapeList)
 {
-	if (!BoneUtil::IsBone(shape)) return;
+	if (!BoneUtil::IsBoneBallJoint(shape)) return;
 
 	float size = 0.0f;
 	const sxsdk::mat4 lwMat = (parentPart) ? ((parentPart->get_transformation()) * (parentPart->get_local_to_world_matrix())) : shape.get_local_to_world_matrix();
 
-	sxsdk::vec3 center = BoneUtil::GetBoneCenter(shape, &size);
+	sxsdk::vec3 center = BoneUtil::GetBoneBallJointCenter(shape, &size);
+	const bool isBone = BoneUtil::IsBone(shape);
 
 	center = center * inv(lwMat);
 	sxsdk::vec3 axis_dir(1, 0, 0);
 
-	sxsdk::part_class& part = scene->begin_bone_joint(center, size, false, axis_dir);
+	sxsdk::part_class& part = isBone ? (scene->begin_bone_joint(center, size, false, axis_dir)) : (scene->begin_ball_joint(center, size));
 	cOrgShapeList.push_back(&shape);
 	cShapeList.push_back(&part);
 
@@ -212,7 +213,7 @@ void CBoneClearAttributeInterface::m_DoBoneClearLoop(sxsdk::scene_interface *sce
 		}
 	}
 
-	scene->end_bone_joint();
+	isBone ? (scene->end_bone_joint()) : (scene->end_ball_joint());
 }
 
 // ダイアログの初期化.
