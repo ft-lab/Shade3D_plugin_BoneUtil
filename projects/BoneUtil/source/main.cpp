@@ -1,4 +1,4 @@
-﻿/**
+/**
  *  @file   main.cpp
  *  @brief  ボーン操作のユーティリティプラグイン.
  */
@@ -21,7 +21,7 @@
 /**
  * プラグインインターフェースの生成.
  */
-extern "C" void STDCALL create_interface (const IID &iid, int i, void **p, sxsdk::shade_interface *shade, void *) {
+extern "C" SXSDKEXPORT void STDCALL create_interface (const IID &iid, int i, void **p, sxsdk::shade_interface *shade, void *) {
 	unknown_interface *u = NULL;
 	
 	if(iid == attribute_iid) {
@@ -64,7 +64,7 @@ extern "C" void STDCALL create_interface (const IID &iid, int i, void **p, sxsdk
 /**
  * インターフェースの数を返す.
  */
-extern "C" int STDCALL has_interface (const IID &iid, sxsdk::shade_interface *shade) {
+extern "C" SXSDKEXPORT int STDCALL has_interface (const IID &iid, sxsdk::shade_interface *shade) {
 	if (iid == attribute_iid) return 9;
 	return 0;
 }
@@ -72,7 +72,7 @@ extern "C" int STDCALL has_interface (const IID &iid, sxsdk::shade_interface *sh
 /**
  * インターフェース名を返す.
  */
-extern "C" const char * STDCALL get_name (const IID &iid, int i, sxsdk::shade_interface *shade, void *) {
+extern "C" SXSDKEXPORT const char * STDCALL get_name (const IID &iid, int i, sxsdk::shade_interface *shade, void *) {
 	// SXULより、プラグイン名を取得して渡す.
 	if (iid == attribute_iid) {
 		if (i == 0) {
@@ -110,7 +110,7 @@ extern "C" const char * STDCALL get_name (const IID &iid, int i, sxsdk::shade_in
 /**
  * プラグインのUUIDを返す.
  */
-extern "C" sx::uuid_class STDCALL get_uuid (const IID &iid, int i, void *) {
+extern "C" SXSDKEXPORT sx::uuid_class STDCALL get_uuid (const IID &iid, int i, void *) {
 	if (iid == attribute_iid) {
 		if (i == 0) {
 			return BONECLEAR_ATTRIBUTE_INTERFACE_ID;
@@ -155,7 +155,7 @@ extern "C" sx::uuid_class STDCALL get_uuid (const IID &iid, int i, void *) {
 /**
  * バージョン情報.
  */
-extern "C" void STDCALL get_info (sxsdk::shade_plugin_info &info, sxsdk::shade_interface *shade, void *) {
+extern "C" SXSDKEXPORT void STDCALL get_info (sxsdk::shade_plugin_info &info, sxsdk::shade_interface *shade, void *) {
 	info.sdk_version = SHADE_BUILD_NUMBER;
 	info.recommended_shade_version = 410000;
 	info.major_version = 1;
@@ -167,6 +167,6 @@ extern "C" void STDCALL get_info (sxsdk::shade_plugin_info &info, sxsdk::shade_i
 /**
  * 常駐プラグイン.
  */
-extern "C" bool STDCALL is_resident (const IID &iid, int i, void *) {
+extern "C" SXSDKEXPORT bool STDCALL is_resident (const IID &iid, int i, void *) {
 	return true;
 }
