@@ -17,6 +17,7 @@
 	<string id="bone_direction_title" value="Set bone direction ..."/>
 
 	<string id="msg_not_bone" value="Choose a bone."/>
+	<string id="msg_not_bone_balljoint" value="Choose a bone or balljoint."/>
 	<!-- <string id="msg_not_mmd_rigs" value="MMDの人体ボーンでない可能性があります。名前変換を続行しますか？"/> -->
 
 </strings>

@@ -30,7 +30,17 @@ namespace BoneUtil
 	/**
 	 * 指定の形状がボーンかどうか.
 	 */
-	bool IsBone(sxsdk::shape_class& shape);
+	bool IsBone (sxsdk::shape_class& shape);
+
+	/**
+	 * 指定の形状がボールジョイントかどうか.
+	 */
+	bool IsBallJoint (sxsdk::shape_class& shape);
+
+	/**
+	 * 指定の形状がボーンまたはボールジョイントかどうか.
+	 */
+	bool IsBoneBallJoint (sxsdk::shape_class& shape);
 
 	/**
 	 * 指定のボーンの親をたどっていくと、ルートボーンにたどりつくか.
@@ -41,6 +51,16 @@ namespace BoneUtil
 	 * ボーンのワールド座標での中心位置とボーンサイズを取得.
 	 */
 	sxsdk::vec3 GetBoneCenter(sxsdk::shape_class& shape, float *size);
+
+	/**
+	 * ボールジョイントのワールド座標での中心位置とボールジョイントサイズを取得.
+	 */
+	sxsdk::vec3 GetBallJointCenter(sxsdk::shape_class& shape, float *size);
+
+	/**
+	 * ボーンまたはボールジョイントのワールド座標での中心位置とサイズを取得.
+	 */
+	sxsdk::vec3 GetBoneBallJointCenter(sxsdk::shape_class& shape, float *size);
 
 	/**
 	 * 指定のポリゴンメッシュに割り当てられているボーンのルートを取得.

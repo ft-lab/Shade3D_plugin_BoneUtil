@@ -159,7 +159,6 @@ void CBoneAutoSizeAttributeInterface::m_SaveData(sxsdk::scene_interface *scene, 
 	} catch (...) { }
 }
 
-
 //--------------------------------------------------//
 //	ダイアログのイベント処理用						//
 //--------------------------------------------------//

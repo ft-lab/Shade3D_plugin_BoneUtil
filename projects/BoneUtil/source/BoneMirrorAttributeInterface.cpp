@@ -26,8 +26,8 @@ bool CBoneMirrorAttributeInterface::ask_shape(sxsdk::shape_class &shape, void *)
 	compointer<sxsdk::scene_interface> scene(shape.get_scene_interface());
 	if (scene == NULL) return false;
 
-	if (!BoneUtil::IsBone(scene->active_shape())) {
-		scene->show_message_box(scene->gettext("msg_not_bone"), false);
+	if (!BoneUtil::IsBoneBallJoint(scene->active_shape())) {
+		scene->show_message_box(scene->gettext("msg_not_bone_balljoint"), false);
 		return false;
 	}
 
@@ -122,8 +122,8 @@ void CBoneMirrorAttributeInterface::m_SaveData(sxsdk::scene_interface *scene, co
 void CBoneMirrorAttributeInterface::m_DoBoneMirror(sxsdk::scene_interface *scene, const CBoneMirrorData& data)
 {
 	sxsdk::shape_class& active_shape = scene->active_shape();
-	if (!BoneUtil::IsBone(active_shape)) {
-		scene->show_message_box(scene->gettext("msg_not_bone"), false);
+	if (!BoneUtil::IsBoneBallJoint(active_shape)) {
+		scene->show_message_box(scene->gettext("msg_not_bone_balljoint"), false);
 		return;
 	}
 
@@ -138,12 +138,15 @@ void CBoneMirrorAttributeInterface::m_DoBoneMirror(sxsdk::scene_interface *scene
 
 void CBoneMirrorAttributeInterface::m_DoBoneMirrorLoop(sxsdk::scene_interface *scene, sxsdk::shape_class& shape, sxsdk::part_class* parentPart, const CBoneMirrorData& data, std::vector<sxsdk::shape_class *>& cShapeList)
 {
-	if (!BoneUtil::IsBone(shape)) return;
+	if (!BoneUtil::IsBoneBallJoint(shape)) return;
+
+	const bool isBone = BoneUtil::IsBone(shape);
 
 	float size = 0.0f;
 	const sxsdk::mat4 lwMat = (parentPart) ? ((parentPart->get_transformation()) * (parentPart->get_local_to_world_matrix())) : shape.get_local_to_world_matrix();
 
-	sxsdk::vec3 center = BoneUtil::GetBoneCenter(shape, &size);
+	sxsdk::vec3 center = BoneUtil::GetBoneBallJointCenter(shape, &size);
+
 	switch (data.axis) {
 	case 0:
 		center.x = -(center.x - data.position) + data.position;
@@ -159,7 +162,7 @@ void CBoneMirrorAttributeInterface::m_DoBoneMirrorLoop(sxsdk::scene_interface *s
 	center = center * inv(lwMat);
 	sxsdk::vec3 axis_dir(1, 0, 0);
 
-	sxsdk::part_class& part = scene->begin_bone_joint(center, size, false, axis_dir);
+	sxsdk::part_class& part = isBone ? (scene->begin_bone_joint(center, size, false, axis_dir)) : (scene->begin_ball_joint(center, size));
 	cShapeList.push_back(&part);
 
 	// 名前の変更.
@@ -180,7 +183,7 @@ void CBoneMirrorAttributeInterface::m_DoBoneMirrorLoop(sxsdk::scene_interface *s
 		}
 	}
 
-	scene->end_bone_joint();
+	isBone ? (scene->end_bone_joint()) : (scene->end_ball_joint());
 }
 
 //--------------------------------------------------//

@@ -8,11 +8,33 @@
 /**
  * 指定の形状がボーンかどうか.
  */
-bool BoneUtil::IsBone(sxsdk::shape_class& shape)
+bool BoneUtil::IsBone (sxsdk::shape_class& shape)
 {
 	if (shape.get_type() != sxsdk::enums::part) return false;
 	sxsdk::part_class& part = shape.get_part();
 	if (part.get_part_type() == sxsdk::enums::bone_joint) return true;
+	return false;
+}
+
+/**
+ * 指定の形状がボールジョイントかどうか.
+ */
+bool BoneUtil::IsBallJoint (sxsdk::shape_class& shape)
+{
+	if (shape.get_type() != sxsdk::enums::part) return false;
+	sxsdk::part_class& part = shape.get_part();
+	if (part.get_part_type() == sxsdk::enums::ball_joint) return true;
+	return false;
+}
+
+/**
+ * 指定の形状がボーンまたはボールジョイントかどうか.
+ */
+bool BoneUtil::IsBoneBallJoint (sxsdk::shape_class& shape)
+{
+	if (shape.get_type() != sxsdk::enums::part) return false;
+	sxsdk::part_class& part = shape.get_part();
+	if (part.get_part_type() == sxsdk::enums::bone_joint || part.get_part_type() == sxsdk::enums::ball_joint) return true;
 	return false;
 }
 
@@ -33,6 +55,42 @@ sxsdk::vec3 BoneUtil::GetBoneCenter(sxsdk::shape_class& shape, float *size)
 	} catch (...) { }
 
 	return center;
+}
+
+/**
+ * ボールジョイントのワールド座標での中心位置とボールジョイントサイズを取得.
+ */
+sxsdk::vec3 BoneUtil::GetBallJointCenter(sxsdk::shape_class& shape, float *size)
+{
+	if (size) *size = 0.0f;
+	if (!BoneUtil::IsBallJoint(shape)) return sxsdk::vec3(0, 0, 0);
+
+	const sxsdk::mat4 lwMat = shape.get_local_to_world_matrix();
+	const sxsdk::part_class& part = shape.get_part();
+	const sxsdk::mat4 m2 = inv(part.get_transformation_matrix()) * part.get_transformation();
+
+	compointer<sxsdk::ball_joint_interface> ball_joint(part.get_ball_joint_interface());
+	const sxsdk::vec3 pos = ball_joint->get_position();
+	const sxsdk::vec4 v4 = sxsdk::vec4(pos, 1) * m2 * lwMat;
+	const sxsdk::vec3 center(v4.x, v4.y, v4.z);
+
+	try {
+		compointer<sxsdk::ball_joint_interface> ballJoint(shape.get_ball_joint_interface());
+		if (size) *size = ballJoint->get_size();
+	} catch (...) { }
+
+	return center;
+}
+
+/**
+ * ボーンまたはボールジョイントのワールド座標での中心位置とサイズを取得.
+ */
+sxsdk::vec3 BoneUtil::GetBoneBallJointCenter(sxsdk::shape_class& shape, float *size)
+{
+	if (BoneUtil::IsBallJoint(shape)) return GetBallJointCenter(shape, size);
+	if (BoneUtil::IsBone(shape)) return GetBoneCenter(shape, size);
+	if (size) *size = 0.0f;
+	return sxsdk::vec3(0, 0, 0);
 }
 
 /**
