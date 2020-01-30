@@ -45,8 +45,8 @@ BONE_DIRECTION_ATTRIB_DLG SXUL                   "..\\source\\resources\\ja.lpro
 //
 
 VS_VERSION_INFO VERSIONINFO
- FILEVERSION 1,1,0,0
- PRODUCTVERSION 1,1,0,0
+ FILEVERSION 1,1,1,0
+ PRODUCTVERSION 1,1,1,0
  FILEFLAGSMASK 0x3fL
 #ifdef _DEBUG
  FILEFLAGS 0x1L
@@ -63,11 +63,11 @@ BEGIN
         BEGIN
             VALUE "CompanyName", "ft-lab"
             VALUE "FileDescription", "BoneUtil"
-            VALUE "FileVersion", "1, 1, 0, 0"
+            VALUE "FileVersion", "1, 1, 1, 0"
             VALUE "InternalName", "BoneUtil"
-            VALUE "LegalCopyright", "Copyright (C) 2015 ft-lab."
+            VALUE "LegalCopyright", "Copyright (C) 2015-2020 ft-lab."
             VALUE "ProductName", "BoneUtil"
-            VALUE "ProductVersion", "1, 1, 0, 0"
+            VALUE "ProductVersion", "1, 1, 1, 0"
         END
     END
     BLOCK "VarFileInfo"
