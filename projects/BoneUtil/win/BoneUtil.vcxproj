@@ -282,6 +282,8 @@
     <ClCompile Include="..\source\BoneDirectionAttributeInterface.cpp" />
     <ClCompile Include="..\source\BoneMirrorAttributeInterface.cpp" />
     <ClCompile Include="..\source\BoneUtil.cpp" />
+    <ClCompile Include="..\source\ConvertBallJointsToBonesAttributeInterface.cpp" />
+    <ClCompile Include="..\source\ConvertBonesToBallJointsAttributeInterface.cpp" />
     <ClCompile Include="..\source\CreateBonesMeshAttributeInterface.cpp" />
     <ClCompile Include="..\source\CreateBoneToMesh.cpp" />
     <ClCompile Include="..\source\CreateHumanBoneAttributeInterface.cpp" />
@@ -297,6 +299,8 @@
     <ClInclude Include="..\source\BoneDirectionAttributeInterface.h" />
     <ClInclude Include="..\source\BoneMirrorAttributeInterface.h" />
     <ClInclude Include="..\source\BoneUtil.h" />
+    <ClInclude Include="..\source\ConvertBallJointsToBonesAttributeInterface.h" />
+    <ClInclude Include="..\source\ConvertBonesToBallJointsAttributeInterface.h" />
     <ClInclude Include="..\source\CreateBonesMeshAttributeInterface.h" />
     <ClInclude Include="..\source\CreateBoneToMesh.h" />
     <ClInclude Include="..\source\CreateHumanBoneAttributeInterface.h" />

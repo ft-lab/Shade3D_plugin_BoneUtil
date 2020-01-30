@@ -16,6 +16,9 @@
 	<string id="rename_human_bone_title" value="Rename human bones ..."/>
 	<string id="bone_direction_title" value="Set bone direction ..."/>
 
+	<string id="bone_to_balljoint_title" value="Convert bones to ball joints"/>
+	<string id="balljoint_to_bone_title" value="Convert ball joints to bones"/>
+
 	<string id="msg_not_bone" value="Choose a bone."/>
 	<string id="msg_not_bone_balljoint" value="Choose a bone or balljoint."/>
 	<!-- <string id="msg_not_mmd_rigs" value="MMDの人体ボーンでない可能性があります。名前変換を続行しますか？"/> -->

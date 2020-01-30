@@ -16,6 +16,9 @@
 	<string id="rename_human_bone_title" value="ボーン名の変更 ..."/>
 	<string id="bone_direction_title" value="ボーンの軸方向 ..."/>
 
+	<string id="bone_to_balljoint_title" value="ボーンをボールジョイントに変換"/>
+	<string id="balljoint_to_bone_title" value="ボールジョイントをボーンに変換"/>
+
 	<string id="msg_not_bone" value="ボーンを選択してください。"/>
 	<string id="msg_not_bone_balljoint" value="ボーンまたはボールジョイントを選択してください。"/>
 

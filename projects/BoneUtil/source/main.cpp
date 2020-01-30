@@ -1,8 +1,6 @@
 ﻿/**
  *  @file   main.cpp
- *  @brief  ボーンのミラーリング複製機能.
- *  @author Yutaka Yoshisaka
- *  @date   2014.08.05 - 2014.09.13.
+ *  @brief  ボーン操作のユーティリティプラグイン.
  */
 
 #include "sxsdk.cxx"
@@ -14,6 +12,8 @@
 #include "InitHumanBoneAttributeInterface.h"
 #include "RenameHumanBoneAttributeInterface.h"
 #include "BoneDirectionAttributeInterface.h"
+#include "ConvertBonesToBallJointsAttributeInterface.h"
+#include "ConvertBallJointsToBonesAttributeInterface.h"
 
 //**************************************************//
 //	グローバル関数									//
@@ -46,6 +46,13 @@ extern "C" void STDCALL create_interface (const IID &iid, int i, void **p, sxsdk
 		if(i == 6) {
 			u = new CCreateBonesMeshAttributeInterface(*shade);
 		}
+		if(i == 7) {
+			u = new CConvertBonesToBallJointsAttributeInterface(*shade);
+		}
+		if(i == 8) {
+			u = new CConvertBallJointsToBonesAttributeInterface(*shade);
+		}
+
 	}
 
 	if(u) {
@@ -58,7 +65,7 @@ extern "C" void STDCALL create_interface (const IID &iid, int i, void **p, sxsdk
  * インターフェースの数を返す.
  */
 extern "C" int STDCALL has_interface (const IID &iid, sxsdk::shade_interface *shade) {
-	if (iid == attribute_iid) return 7;
+	if (iid == attribute_iid) return 9;
 	return 0;
 }
 
@@ -89,6 +96,13 @@ extern "C" const char * STDCALL get_name (const IID &iid, int i, sxsdk::shade_in
 		if (i == 6) {
 			return CCreateBonesMeshAttributeInterface::name(shade);
 		}
+		if (i == 7) {
+			return CConvertBonesToBallJointsAttributeInterface::name(shade);
+		}
+		if (i == 8) {
+			return CConvertBallJointsToBonesAttributeInterface::name(shade);
+		}
+
 	}
 	return 0;
 }
@@ -119,6 +133,13 @@ extern "C" sx::uuid_class STDCALL get_uuid (const IID &iid, int i, void *) {
 		if (i == 6) {
 			return CREATE_BONES_MESH_ATTRIBUTE_INTERFACE_ID;
 		}
+		if (i == 7) {
+			return CONVERT_BONES_TO_BALLJOINTS_ATTRIBUTE_INTERFACE_ID;
+		}
+		if (i == 8) {
+			return CONVERT_BALLJOINTS_TO_BONES_ATTRIBUTE_INTERFACE_ID;
+		}
+
 	}
 
 	return sx::uuid_class(0, 0, 0, 0);

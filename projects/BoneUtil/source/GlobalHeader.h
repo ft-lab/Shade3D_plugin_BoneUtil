@@ -51,6 +51,16 @@
 #define BONE_DIRECTION_ATTRIBUTE_INTERFACE_ID sx::uuid_class("12D958A8-6BA3-4E32-9A9F-10A911AF4E0B")
 
 /**
+ * ボーンをボールジョイントに変換するattribute ID.
+ */
+#define CONVERT_BONES_TO_BALLJOINTS_ATTRIBUTE_INTERFACE_ID sx::uuid_class("A0271382-1E0B-4D4B-8961-0E94BF94DDB6")
+
+/**
+ * ボールジョイントをボーンに変換するattribute ID.
+ */
+#define CONVERT_BALLJOINTS_TO_BONES_ATTRIBUTE_INTERFACE_ID sx::uuid_class("C2FDF97F-540B-4194-A37F-4057C4DC40B4")
+
+/**
  * リグ構成のための制御点を結ぶstream ID.
  */
 #define RIG_POINT_STERAM_ID sx::uuid_class("607E8D7C-9A4D-4425-92B8-44F588C7D379")
